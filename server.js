@@ -26,14 +26,14 @@ app.use(helmet());
 /* -------------------------
    Logging
    ------------------------- */
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('combined'));
 }
 
 /* -------------------------
    CORS
    ------------------------- */
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000').split(',');
+const allowedOrigins = (process.env.CORS_ORIGINS || 'https://contestbk.vercel.app/').split(',');
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -189,7 +189,7 @@ app.use((req, res, next) => {
    DB Connect
    ------------------------- */
 const MONGO_URI = process.env.MONGO_URI;
-if (!MONGO_URI && process.env.NODE_ENV !== 'test') {
+if (!MONGO_URI && process.env.NODE_ENV !== 'production') {
   console.error('MONGO_URI not set in .env');
   process.exit(1);
 }
@@ -197,7 +197,7 @@ mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => {
     console.error('MongoDB connection error:', err);
-    if (process.env.NODE_ENV !== 'test') process.exit(1);
+    if (process.env.NODE_ENV !== 'production') process.exit(1);
   });
 
 /* -------------------------
@@ -231,7 +231,7 @@ app.use((err, req, res, next) => {
 
 app.get('/', (req, res) => res.json({ ok: true, name: 'Fast Finger Contest Backend' }));
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
