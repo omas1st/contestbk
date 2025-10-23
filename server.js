@@ -33,7 +33,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* -------------------------
    CORS
    ------------------------- */
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://contestbk.vercel.app/').split(',');
+const allowedOrigins = (process.env.CORS_ORIGINS || 'https://contestbk.vercel.app/').split(',');
 app.use(
   cors({
     origin: function (origin, callback) {
