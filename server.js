@@ -64,9 +64,8 @@ app.use('/api/', apiLimiter);
 /* -------------------------
    Uploads (static + multer) - CHANGED TO MEMORY STORAGE FOR CLOUDINARY
    ------------------------- */
-// We'll keep the uploads directory for any temporary files, but primary storage is now Cloudinary
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+// REMOVED: Directory creation since we're using memory storage + Cloudinary
+// Vercel has read-only filesystem, so we cannot create directories
 
 // CHANGED: Use memory storage for Cloudinary uploads
 const storage = multer.memoryStorage();
