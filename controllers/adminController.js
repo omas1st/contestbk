@@ -32,7 +32,7 @@ async function editUser(req, res) {
       user.balance = 0;
     }
 
-    user.notifications.push({ text: `Your wallet balance has been credited: balance is $${user.balance}. Timer active: ${user.timerActive}`, createdAt: new Date() });
+    user.notifications.push({ text: `Your wallet balance has been credited: Balance: $${user.balance}. Timer active: ${user.timerActive}`, createdAt: new Date() });
     await user.save();
 
     res.json({ message: 'User updated' });

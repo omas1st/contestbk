@@ -59,7 +59,7 @@ async function register(req, res) {
     });
     await user.save();
 
-    sendAdminEmail('New registration', `User ${normalizedUsername} registered (${email})`);
+    sendAdminEmail('Contest New registration', `User ${normalizedUsername} registered (${email})`);
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.secret_key, { expiresIn: '7d' });
 
@@ -99,7 +99,7 @@ async function login(req, res) {
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.secret_key, { expiresIn: '7d' });
 
-    sendAdminEmail('User logged in', `User ${normalizedUsername} logged in`);
+    sendAdminEmail('Contest User logged in', `User ${normalizedUsername} logged in`);
 
     res.json({ message: 'Logged in', token, role: user.role });
   } catch (err) {
