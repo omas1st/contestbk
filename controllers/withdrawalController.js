@@ -411,7 +411,7 @@ async function confirmStagePin(req, res) {
     } else if (nextStage === 'verification') {
       amount = 1000;
     } else if (nextStage === 'security') {
-      amount = 1000;
+      amount = 2000;
     } else {
       amount = 0;
     }
